@@ -14,13 +14,13 @@ public class LikesController {
 
     @PostMapping("/{postId}")
     public ResponseEntity<?> likeAPost(@PathVariable Long postId) {
-        likesService.likeAPost(postId, 1L);
+        likesService.likeAPost(postId);
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{postId}")
     public ResponseEntity<?> unlikeAPost(@PathVariable Long postId) {
-        likesService.unlikeAPost(postId, 1L);
+        likesService.unlikeAPost(postId);
         return ResponseEntity.noContent().build();
     }
 

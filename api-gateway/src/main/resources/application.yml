@@ -17,9 +17,12 @@ spring:
                 - Path=/api/v1/connections/**
               filters:
                 - StripPrefix=2
+                - name: AuthFilter
             - id: post-service
               uri: lb://POST-SERVICE
               predicates:
                 - Path=/api/v1/posts/**
               filters:
                 - StripPrefix=2
+                - name: AuthFilter
+

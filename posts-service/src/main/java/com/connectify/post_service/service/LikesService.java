@@ -1,5 +1,6 @@
 package com.connectify.post_service.service;
 
+import com.connectify.post_service.context.UserContextHolder;
 import com.connectify.post_service.entity.PostLike;
 import com.connectify.post_service.exception.BadRequestException;
 import com.connectify.post_service.exception.ResourceNotFoundException;
@@ -17,7 +18,8 @@ public class LikesService {
     private final PostRepository postRepository;
     private final LikesRepository likesRepository;
 
-    public void likeAPost(Long postId, Long userId) {
+    public void likeAPost(Long postId) {
+        Long userId = UserContextHolder.getCurrentUser().getId();
         boolean isExists = postRepository.existsById(postId);
         if(!isExists) throw new ResourceNotFoundException("Post not found with id: " + postId);
 
@@ -33,7 +35,8 @@ public class LikesService {
         likesRepository.save(postLike);
     }
 
-    public void unlikeAPost(Long postId, Long userId) {
+    public void unlikeAPost(Long postId) {
+        Long userId = UserContextHolder.getCurrentUser().getId();
         boolean isExists = postRepository.existsById(postId);
         if(!isExists) throw new ResourceNotFoundException("Post not found with id: " + postId);
 
